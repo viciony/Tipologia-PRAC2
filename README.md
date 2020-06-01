@@ -1,7 +1,5 @@
 # Tipologia-PRAC2
 
-Dato de contraste: Los diferentes archivos y resoluciones de la práctica se pueden encontrar en el siguiente enlace. https://github.com/viciony/Tipologia-PRAC2
-
 ## Presentación
 En esta práctica se elabora un caso práctico orientado a aprender a identificar los datos relevantes para un proyecto analítico y usar las herramientas de integración, limpieza, validación y análisis de las mismas.
 
