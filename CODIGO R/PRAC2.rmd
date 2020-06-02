@@ -3,9 +3,6 @@ title: 'Tipologia y ciclo de vida de los datos: Practica 2 - Limpieza y analisis
 author: "Autor: Joan Miquel Forteza Fuster"
 date: "24/05/2020"
 output:
-  pdf_document:
-    highlight: zenburn
-    toc: yes
   html_document:
     highlight: default
     number_sections: yes
@@ -14,6 +11,10 @@ output:
     toc_depth: 4
     includes:
       in_header: header.html
+    pdf_document:
+      highlight: zenburn
+      toc: yes
+      toc_depth: 4
 knit: (function(input_file, encoding) {
   out_dir <- '../DOCUMENTACION';
   rmarkdown::render(input_file,
@@ -184,7 +185,7 @@ colSums(dtTitanic==0)
 ```
 
 <p ALIGN="justify">
-Hay 4 variables que contienen valores a 0, pero estos valores no se consideraran como valores que sean malos para la análitica, ya que en el agunos casos como el de los hermanos y hijos y padres se puede valorar que no tiene, y en el caso de la variable Fare, podemos considerar que esas personas viajaron de gratis a bordo de la embarcación, que con la siguiente instrucción podemos ver que fueron todo hombres que embarcaron desde el mismo puerto y iban solos, por lo tanto podia ser tripulación de refuerzo de la embarcación que fueron considerados como pasajeros o personas invitadas a la embarcación.
+Hay 4 variables que contienen valores a 0, pero estos valores no se consideraran como valores que sean malos para la análitica, ya que en el algunos casos como el de los hermanos y hijos y padres se puede valorar que no tiene, y en el caso de la variable Fare, podemos considerar que esas personas viajaron de gratis a bordo de la embarcación, que con la siguiente instrucción podemos ver que fueron todo hombres que embarcaron desde el mismo puerto y iban solos, por lo tanto podia ser tripulación de refuerzo de la embarcación que fueron considerados como pasajeros o personas invitadas a la embarcación.
 </p>
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}
@@ -196,7 +197,7 @@ dtTitanic[dtTitanic$Fare==0,]
 
 <p ALIGN="justify">
 En este apartado identificaremos los valores atípicos o outliers. Estos valores suelen representarse en diagramas de caja y son valores que estan en los extremos de estas mismas, o son muy grandes o muy pequeños para el conjunto de datos. Usaremos la función boxplot() de R para representar esos diagramas de caja y ver nuestros valores atípicos.
-Se utilizaran las variables no factorizas y númericas para poder ver estos valores
+Se utilizaran las variables no factorizadas y que son númericas para poder ver estos valores
 </p>
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}
@@ -243,7 +244,7 @@ str(dtTitanic)
 ```
 <p ALIGN="justify">
 
-En el apartado de limpeza de datos hemos detectado un valor atípico en la variable `Fare` mediante el diagrama de caja ,donde podemos ver un valor muy grande que se ha pagado por el billete de de embarcación. Esta cantidad han sido 512.3292 y repetida en tres pasajeros ditintos, por lo tanto miraremos que relación pueden tener estos tres pasajeros. </p>
+En el apartado de limpeza de datos hemos detectado un valor atípico en la variable `Fare` mediante el diagrama de caja ,donde podemos ver un valor muy grande que se ha pagado por el billete de de embarcación. La cantidad del valor atípico es de 512.3292 y repetida en tres pasajeros distintos, por lo tanto miraremos que relación pueden tener estos tres pasajeros. </p>
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}
 outliers_fare <- boxplot.stats(dtTitanic$Fare)$out
@@ -325,7 +326,7 @@ tabla_comparativa
 ```
 
 <p ALIGN="justify">
-Donde vemos que el porcentaje mayor de supervivencia es en los pasajeros de embarcación C.
+Donde vemos que el porcentaje de supervivencia mayor es en los pasajeros de embarcación C.
 
 
 El siguiente gráfico que generaremos, sera uno de frequencias utilizando 3 variables, la variable objetivo de supervivencia, la utilizada Embarked, pero ademas le añadiremos el PClass, para ver en que clase viajaban los pasajeros.
@@ -350,7 +351,7 @@ ggplot(data = dtTitanic,aes(x=Parch,fill=Survived))+geom_bar()+xlab("Numero padr
 
 
 <p ALIGN="justify">
-Como podemos ver los gráficos son muy similares, por lo tanto indica presencia de correlaciones altes y por eso la creación de la variable nFamiliares que hemos hecho anteriormente y a partir de esta en el siguiente gráfico podremos ver cual ha sido la supervivencia en función del número de familiares.
+Como podemos ver los gráficos son muy similares, por lo tanto indica presencia de correlaciones altas y por eso la creación de la variable nFamiliares que hemos hecho anteriormente y a partir de esta en el siguiente gráfico podremos ver cual ha sido la supervivencia en función del número de familiares.
 
 </p>
 
@@ -363,7 +364,7 @@ ggplot(data = dtTitanic[!is.na(dtTitanic$nFamiliares),],aes(x=nFamiliares,fill=S
 Como podemos observar las familias menos numerosas son las que tienen el porcentaje de supervivencia más alto, viendo también que las familias mas altamente numerosas el porcentaje de supervivencia puede ser 0 y viendo que la frequencia en de 8 - 11 en numero de familiares es nula. El parametro position con fill podemos ver como nos muestra la acumulación de proporciones uno dentro de otro.
 
 
-Con el gráfico anterior podemos ver que se pueden acumular muchas clases en un gráfico, ya hemos analizado la variable Age en funcion de si era adulto o niño, pero en el siguiente gráfico analizaremos en funcion de la edad, utilizando un gráfico parecido al anterior, que nos acumula las proporciones y nos muestra las frequencias.
+Con el gráfico anterior podemos ver que se pueden acumular muchas clases en un gráfico, ya hemos analizado la variable Age en otra variable factorizada funcion de si era adulto o niño, pero en el siguiente gráfico analizaremos en funcion de la edad númerica, utilizando un gráfico parecido al anterior, que nos acumula las proporciones y nos muestra las frequencias.
 
 </p>
 
@@ -374,11 +375,11 @@ ggplot(data = dtTitanic[!is.na(dtTitanic$Age),],aes(x=Age,fill=Survived))+geom_h
 
 <p ALIGN="justify">
 
-Como podemos ver la frequencia de supervivencia va de más a menos en función va aumentando loa edad, habiendo unos picos y bajones entre ellos, y viendo que al final hubo supervivencia a alta edad.
+Como podemos ver la frequencia de supervivencia va de más a menos en función va aumentando la edad, habiendo unos picos y bajones entre ellos, y viendo que al final que hubo supervivencia a alta edad.
 
 Como se pide para la resolución de la práctica, se realizará un estudio sobre los datos utilizando analisis estadistico. Este estudio se realizará sobre la variable de edad, comparando tambien entre el sexo de los pasajeros. Con los ultimos gráficos se puede observar que la frequencia de supervivencia ronda entre los 40-60%, por lo tanto queremos ver si este porcentaje se mantiene si separamos la población por sexo.
 
-Objetivo también el verificar la normalidad en nuestro caso con unos de los test más utilizados par eso son los tests de Saphiro-wilk y Kolmogrov-smirnov. Los dos comparan la distribución de los datos en una distribución normal. La hipotesis nula de nuestro analisis estadistico, es que la población esta distribuida con normalidad, si obtenemos el p-valor menor al nivel de significación que se usa generalmente,α=0,05, entonces dicha hipotesis es rechazada y se concluye que no hay una distribución normal. En caso contrario, si p-valor es mayor a nuestro nivel de significación, no se podra rechazar dicha hipotesis y asumiremos que tenemos una distribucion normal. 
+Objetivo también es el verificar la normalidad, en nuestro caso con unos de los test más utilizados para eso. Son los tests de Saphiro-wilk y Kolmogrov-smirnov. Los dos comparan la distribución de los datos en una distribución normal. La hipotesis nula de nuestro analisis estadistico, es que la población esta distribuida con normalidad, si obtenemos el p-valor menor al nivel de significación que se usa generalmente,α=0,05, entonces dicha hipotesis es rechazada y se concluye que no hay una distribución normal. En caso contrario, si p-valor es mayor a nuestro nivel de significación, no se podra rechazar dicha hipotesis y asumiremos que tenemos una distribucion normal. 
 
 Mediante las funciones en R, ks.test() y shapiro.test(), representaremos dichos test para analizar la normalidad, ademas usaremos el metodo ecdf para ver de manera grafica la distribución comparando la edad de nuestros grupos de hombres y mujeres en nuestro conjunto de datos.
 
@@ -391,7 +392,7 @@ edad_mujer <- dtTitanic$Age[dtTitanic$Sex=="female"]
 
 #Test de Kolmorgov-smirnov
 ks.test(edad_mujer,edad_hombre)
-#test de Saphiro-wilk
+#Test de Saphiro-wilk
 shapiro.test(dtTitanic$Age)
 var.test(edad_mujer,edad_hombre)
 
@@ -401,7 +402,7 @@ var.test(edad_mujer,edad_hombre)
 
 Hemos podido ver en el gráfico que las dos lineas tienen una misma similitud en la forma, por lo tanto podemos ver la compensación en en edades en nuestro conjunto de datos. Pero viendo los resultados de los respectivos tests, vemos que el p-valor esta por debajo de el nivel de significación, por lo tanto rechazamos nuestra hipotesis de normalidad y podemos afirmar que no nuestro conjunto de datos no sigue una distribución normal.
 
-A continuación realizaremos la prueba T student, una de las pruebas más utilizadas en la estadística. Teniendo como hipotesis nula que que las medias de las edades en los grupos son iguales y teniendo como alternativas mayores y menores.
+A continuación realizaremos la prueba T student, una de las pruebas más utilizadas en la estadística. Teniendo como hipotesis nula que las medias de las edades en los grupos son iguales y teniendo como alternativas mayores y menores.
 
 </p>
 
@@ -435,7 +436,7 @@ También hemos podido comprobar por diferentes variables, la frequencia y propor
 
 También como se pedia de objetivo en la práctica mediante los diferentes test aplicados, hemos podido llegar a la conclusión que las edades de nuestro conjunto de datos no seguia una distribución normal, en los grupos correspondientes de mujeres y hombres.
 
-Como conclusión final, se propone como una resolución de práctica muy visual y facil de entender para todas aquellas personas que quieran introducirse en este mundo, pudiendose así complicar mucho mas las cosas y utilizar millones de disposiciones gráficas para representar los datos de otras maneras y entrar mas en profundo desglosando más los datos.
+Como conclusión final, se propone como una resolución de una práctica muy visual y facil de entender para todas aquellas personas que quieran introducirse en este mundo, pudiendose así complicar mucho mas las cosas y utilizar millones de disposiciones gráficas para representar los datos de otras maneras y entrar mas en profundo desglosando más los datos.
 
 
 </p>
