@@ -39,7 +39,7 @@ Dentro la carpeta `DATASETS`, estan los respectivos csv utilizados para la prác
 
 La realización de esta práctica se ha llevado a cabo con un RMARKDOWN, mediante RSTUDIO y el lenguaje R para los diferentes análisis y limpieza de datos.
 
-En la carpeta de `CODIGO R`, tenemos un archivo `PRAC2.rmd` donde esta todo el código R de la práctica y la generación de documento, y un fichero html, usado como cabecera para las prácticas de la UOC, en los archivos RMD.
+En la carpeta de `CODIGO R`, tenemos un archivo `PRAC2.rmd` donde esta todo el código R de la práctica y la generación de documento.
 
 En la carpeta de documentación contiene el archivo `Prac2_Tipologia` en dos formatos, pdf y html generados por el rmarkdown.
 
