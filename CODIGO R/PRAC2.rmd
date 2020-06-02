@@ -9,9 +9,7 @@ output:
     theme: cosmo
     toc: yes
     toc_depth: 4
-    includes:
-      in_header: header.html
-    pdf_document:
+  pdf_document:
       highlight: zenburn
       toc: yes
       toc_depth: 4
